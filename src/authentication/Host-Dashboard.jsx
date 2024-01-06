@@ -1,17 +1,12 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { useForm } from 'react-hook-form';
 import fetcher from '../api';
-import { toast } from 'react-toastify';
-import ResidentInfoByHost from '../authentication/Resident-Info-by-Host';
-
-
-const AddResident = () => {
+import ResidentInfoByHost from './Resident-Info-by-Host';
+const HostDashboardInfo = () => {
     const userInfo = JSON.parse(localStorage.getItem('loginUser'));
-    console.log(userInfo)
     const { register, handleSubmit, reset } = useForm();
     const imageStorageKey = '1c47ecbac30f9168913be4c44e47e86f'
     const loginUserInfo = JSON.parse(localStorage.getItem('loginUser'));
-    console.log(loginUserInfo)
 
     const uploadImage = async (url, formData) => {
         try {
@@ -20,25 +15,18 @@ const AddResident = () => {
                 body: formData,
             });
             const result = await response.json();
-            console.log('Uploaded image:', result);
-
-
             return result;
         } catch (error) {
-            console.error('Error uploading image:', error);
             throw error;
         }
     };
 
     const onSubmit = async (data) => {
         const { image1, image2, image3, image4, longitude, latitude, ...otherData } = data
-
-        console.log(otherData)
         const images = [data.image1[0], data.image2[0], data.image3[0], data.image4[0]];
         const url = `https://api.imgbb.com/1/upload?key=${imageStorageKey}`;
 
         const uploadedResults = [];
-
         const uploadNextImage = async (index) => {
             if (index < images.length) {
                 const formData = new FormData();
@@ -47,13 +35,11 @@ const AddResident = () => {
                 try {
                     const result = await uploadImage(url, formData);
                     uploadedResults.push(result.data.url);
-                    // Upload the next image
                     await uploadNextImage(index + 1);
                 } catch (error) {
-                    // Handle error, stop uploading if needed
+                    console.log(error)
                 }
             } else {
-                // All images have been uploaded, do something with uploadedResults
                 console.log('All images uploaded:', uploadedResults);
             }
         };
@@ -72,8 +58,6 @@ const AddResident = () => {
             otherData.host_info = userInfo?._id;
             otherData.host_name = userInfo?.fullname;
 
-            console.log(otherData)
-
             const url = '/api/resident/create'
             const result = await fetcher.post(url, otherData);
             console.log(result)
@@ -82,17 +66,15 @@ const AddResident = () => {
 
 
     };
-
-
     return (
         <div className="w-full">
             <div className='flex justify-between mx-12 py-3'>
                 <div>Add Hotel/House</div>
                 <div>
-                    <input type="checkbox" id="add-hotel-modal" className="modal-toggle" />
+                    <input type="checkbox" id="my-modal-6" className="modal-toggle" />
                     <div className="modal">
                         <div className="modal-box relative">
-                            <label htmlFor="add-hotel-modal" className="btn btn-sm btn-circle absolute right-2 top-2">✕</label>
+                            <label htmlFor="my-modal-6" className="btn btn-sm btn-circle absolute right-2 top-2">✕</label>
                             <form
                                 onSubmit={handleSubmit(onSubmit)}
                             >
@@ -105,7 +87,6 @@ const AddResident = () => {
                                             value: true,
                                         }
                                     })} />
-
                                 </div>
                                 <div className="form-control">
                                     <label className="label">
@@ -116,7 +97,6 @@ const AddResident = () => {
                                             value: true,
                                         }
                                     })} />
-
                                 </div>
                                 <div className="form-control">
                                     <label className="label">
@@ -127,7 +107,6 @@ const AddResident = () => {
                                             value: true,
                                         }
                                     })} />
-
                                 </div>
                                 <div className="form-control">
                                     <label className="label">
@@ -138,7 +117,6 @@ const AddResident = () => {
                                             value: true,
                                         }
                                     })} />
-
                                 </div>
                                 <div className="form-control">
                                     <label className="label">
@@ -200,14 +178,8 @@ const AddResident = () => {
                                                 <option>Per Night</option>
                                                 <option>Per Month</option>
                                             </select>
-                                            {/* <input
-                                                type="text"
-                                                placeholder="Price Type"
-                                                {...register("price_type")}
-                                                className="input input-bordered kbd" /> */}
                                         </div>
                                     </div>
-
                                 </div>
                                 <div className="form-control">
                                     <div className='grid grid-cols-2 gap-12'>
@@ -232,7 +204,6 @@ const AddResident = () => {
                                                 className="input input-bordered kbd" />
                                         </div>
                                     </div>
-
                                 </div>
                                 <div className="form-control">
                                     <div className='grid grid-cols-2 gap-12'>
@@ -257,7 +228,6 @@ const AddResident = () => {
                                                 className="input input-bordered kbd" />
                                         </div>
                                     </div>
-
                                 </div>
                                 <div className="form-control mt-6">
                                     <button
@@ -265,8 +235,6 @@ const AddResident = () => {
                                         className="btn  text-white">Create Resident</button>
                                 </div>
                             </form>
-
-
                         </div>
                     </div>
                 </div>
@@ -275,10 +243,11 @@ const AddResident = () => {
                 </div>
             </div>
             <div className='mx-12 p-1 mb-10 font-serif'>
-                <ResidentInfoByHost/>
+                <ResidentInfoByHost loginUserInfo={loginUserInfo}/>
             </div>
         </div>
+
     );
 };
 
-export default AddResident;
+export default HostDashboardInfo;
