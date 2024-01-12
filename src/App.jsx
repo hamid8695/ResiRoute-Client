@@ -53,7 +53,9 @@ function App() {
             <Route path="/login" element={<Login />} />
             <Route path="/signup" element={<SignUp />} />
             <Route path="/admin-signup" element={<AdminSignUp />} />
-            <Route path="/host-dashboard" element={<HostDashboardInfo />} />
+            <Route path="/host-dashboard" element={
+              <PrivateRoute> <HostDashboardInfo /></PrivateRoute>
+            } />
             <Route path="/payment-success/:id" element={<PaymentSuccess />} />
             <Route path="/booking-info-by-host/:id" element={<BookingList />} />
             <Route path="/forget-pass" element={<ForgetPass />} />
