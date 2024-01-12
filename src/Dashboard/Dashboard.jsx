@@ -1,33 +1,27 @@
 import React, { useState } from 'react';
-import { Link, Outlet } from 'react-router-dom';
+import { Link, Outlet, useNavigate } from 'react-router-dom';
 import { HiMenuAlt3 } from 'react-icons/hi';
 import { MdOutlineDashboard } from 'react-icons/md';
 import { BiLogOut } from 'react-icons/bi';
-import { FiPackage } from 'react-icons/fi';
-import { MdOutlineAdminPanelSettings } from 'react-icons/md';
-import { ImLink } from 'react-icons/im';
-import { AiOutlineHome } from 'react-icons/ai';
-import { CgProfile } from 'react-icons/cg';
-import { RiBillLine } from 'react-icons/ri';
-
+import { GrUserAdmin } from "react-icons/gr";
+import { MdHomeWork } from "react-icons/md";
+import { GrTransaction } from "react-icons/gr";
 const Dashboard = () => {
-
+    const navigate = useNavigate();
     const [open, setOpen] = useState(true);
     const handleLogout = () => {
-        localStorage.removeItem("accessToken");
+        localStorage.removeItem("Credentials");
+            navigate("/admin-login");
+            window.location.reload();
     }
 
     const allMenu = [
         { name: "Dashboard", link: "/dashboard", icon: MdOutlineDashboard },
-        { name: "Url", link: "/dashboard/add", icon: ImLink },
-        // { name: "Package", link: "/dashboard/package", icon: FiPackage },
-        // { name: "Admin", link: "/dashboard/all-admin", icon: MdOutlineAdminPanelSettings, margin: true },
-        // { name: "Bill", link: "/", icon: RiBillLine },
-        // { name: "Profile", link: "/dashboard/profile", icon: CgProfile },
-        // { name: "Logout", link: "/login", icon: BiLogOut, margin: true },
-        // { name: "Back Home", link: "/", icon: AiOutlineHome },
+        { name: "Host", link: "/dashboard/add", icon: GrUserAdmin },
+        { name: "Resident", link: "/dashboard/resident", icon: MdHomeWork },
+        { name: "Booking", link: "/dashboard/add", icon: GrTransaction },
+        { name: "Logout", link: "/login", icon: BiLogOut, margin: true },
     ]
-    
     return (
         <section className='flex'>
             <div className={`bg-black ${open ? "w-72" : "w-16"} duration-500 min-h-screen text-gray-100 px-4`}>

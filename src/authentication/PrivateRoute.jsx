@@ -3,10 +3,11 @@ import { Navigate, useLocation } from "react-router-dom";
 import useVerify from "../hooks/useVerify";
 
 const PrivateRoute = ({children}) => {
-  const [token]=useVerify();
+  const user = localStorage.getItem('loginUser');
+  console.log('asfsdfsdgs',user)
  
   const location = useLocation();
-  if (!token) {
+  if (!user) {
     return <Navigate to='/login' state={{ from: location }} replace />;
   }
   return children;

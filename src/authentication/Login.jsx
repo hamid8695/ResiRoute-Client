@@ -4,8 +4,6 @@ import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import fetcher from '../api';
 import { toast } from 'react-toastify';
-import { BsEye } from 'react-icons/bs';
-import { BsEyeSlash } from 'react-icons/bs';
 
 const Login = () => {
     const [show, setShow] = useState(true)
@@ -15,13 +13,11 @@ const Login = () => {
 
     const { register, handleSubmit, reset } = useForm();
     const onSubmit = async (data) => {
-        console.log(data);
         try {
             const url = '/api/user/login'
             const result = await fetcher.post(url, data);
-            console.log(result);
-            // localStorage.setItem("accessToken", result?.data?.data?.token);
-            // navigate(from, { replace: true });
+            localStorage.setItem("loginUser", JSON.stringify(result?.data));
+           console.log('logihn',result?.data?.token)
             toast.success(result?.data?.message, {
                 position: 'top-center'
             })
@@ -34,7 +30,7 @@ const Login = () => {
     };
 
     return (
-        <div className='bg-gray-300 flex justify-center pt-16'>
+        <div className='bg-gray-300 flex justify-center pt-28'>
             <div class="min-h-screen">
                 <div class="relative py-3 sm:max-w-xl sm:mx-auto">
                     <div
