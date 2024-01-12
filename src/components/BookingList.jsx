@@ -23,7 +23,6 @@ const BookingList = () => {
     useEffect(() => {
         getBookingList();
     }, [])
-    console.log('dfhahdgs', bookingList[0])
     const handleConfirmBooking = async (contact, name, date) => {
         const url = `http://bulksmsbd.net/api/smsapi?api_key=1BE8YeI3VyOoktNnr7xO&type=text&number=01859168695&senderid=iTrading&message=Hello ${name}, Your Booking is Confirmed!. Your Booking Date is ${date}`
         await axios({
@@ -32,7 +31,7 @@ const BookingList = () => {
         });
     }
     return (
-        <div >
+        <div className='mt-24'>
             {/* <h3 className="font-bold text-lg">Booking  List </h3> */}
             <div className='flex justify-center w-full'>
                 <div className="overflow-x-auto" >

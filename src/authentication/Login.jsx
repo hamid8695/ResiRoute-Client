@@ -4,8 +4,6 @@ import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import fetcher from '../api';
 import { toast } from 'react-toastify';
-import { BsEye } from 'react-icons/bs';
-import { BsEyeSlash } from 'react-icons/bs';
 
 const Login = () => {
     const [show, setShow] = useState(true)
@@ -18,8 +16,8 @@ const Login = () => {
         try {
             const url = '/api/user/login'
             const result = await fetcher.post(url, data);
-            localStorage.setItem("loginUser", JSON.stringify(result?.data?.data));
-           
+            localStorage.setItem("loginUser", JSON.stringify(result?.data));
+           console.log('logihn',result?.data?.token)
             toast.success(result?.data?.message, {
                 position: 'top-center'
             })

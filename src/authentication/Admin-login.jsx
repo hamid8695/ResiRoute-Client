@@ -16,10 +16,10 @@ const AdminLogin = () => {
     const { register, handleSubmit, reset } = useForm();
     const onSubmit = async (data) => {
         try {
-            const url = '/api/user/login'
+            const url = '/api/admin/login'
             const result = await fetcher.post(url, data);
-            console.log(result?.data?.data);
-            localStorage.setItem("loginUser", JSON.stringify(result?.data?.data));
+            console.log(result);
+            localStorage.setItem("Credentials", JSON.stringify(result?.data?.data));
             // navigate(from, { replace: true });
             toast.success(result?.data?.message, {
                 position: 'top-center'
@@ -33,7 +33,7 @@ const AdminLogin = () => {
     };
 
     return (
-        <div className='bg-gray-300 flex justify-center pt-16'>
+        <div className='bg-gray-300 flex justify-center pt-28'>
             <div class="min-h-screen">
                 <div class="relative py-3 sm:max-w-xl sm:mx-auto">
                     <div
@@ -43,7 +43,7 @@ const AdminLogin = () => {
 
                         <div class="max-w-md mx-auto font-serif">
                             <div>
-                                <h1 class="text-2xl font-semibold">Merchant Login</h1>
+                                <h1 class="text-2xl font-semibold">Admin Login</h1>
                             </div>
                             <div class="divide-y divide-gray-200">
                                 <form  onSubmit={handleSubmit(onSubmit)} class="py-8 text-base leading-6 space-y-4 text-gray-700 sm:text-lg sm:leading-7">

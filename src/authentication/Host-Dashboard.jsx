@@ -2,6 +2,7 @@ import React from 'react';
 import { useForm } from 'react-hook-form';
 import fetcher from '../api';
 import ResidentInfoByHost from './Resident-Info-by-Host';
+import { toast } from 'react-toastify';
 const HostDashboardInfo = () => {
     const userInfo = JSON.parse(localStorage.getItem('loginUser'));
     const { register, handleSubmit, reset } = useForm();
@@ -55,11 +56,14 @@ const HostDashboardInfo = () => {
                 type: "Point",
                 coordinates: [Number(longitude), Number(latitude)]
             }
-            otherData.host_info = userInfo?._id;
-            otherData.host_name = userInfo?.fullname;
+            otherData.host_info = userInfo?.data?._id;
+            otherData.host_name = userInfo?.data?.fullname;
 
             const url = '/api/resident/create'
             const result = await fetcher.post(url, otherData);
+            toast.success("Successfully Added in the List!", {
+                position: 'top-center'
+            })
             console.log(result)
         }, [1500])
 
@@ -67,7 +71,7 @@ const HostDashboardInfo = () => {
 
     };
     return (
-        <div className="w-full">
+        <div className="w-full mt-10">
             <div className='flex justify-between mx-12 py-3'>
                 <div>Add Hotel/House</div>
                 <div>

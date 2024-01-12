@@ -1,4 +1,4 @@
-import { Route, Routes } from "react-router-dom"
+import { Route, Routes, useLocation } from "react-router-dom"
 import Home from "./pages/Home"
 import Navbar from "./components/Navbar"
 import NotFound from "./pages/NotFound"
@@ -19,32 +19,37 @@ import HostDashboardInfo from "./authentication/Host-Dashboard"
 import BookingList from "./components/BookingList"
 import BookingHotel from "./pages/BookingHotel"
 import PaymentSuccess from "./pages/paymentSuccess"
+import Resident from "./Dashboard/Resident"
+import PrivateRoute from "./authentication/PrivateRoute"
 
 function App() {
-  const admin = true;
+  const location = useLocation();
+  let path = location?.pathname;
+  console.log('pathhttt', path.slice(0, 10))
   const [user, setUser] = useState(true)
   return (
     <>
-      {/* {
-        admin && <Routes>
+      {
+        (path === '/admin-login' || path.slice(0, 10) === '/dashboard') && <Routes>
           <Route path="/dashboard" element={<Dashboard />} >
             <Route index element={<DashboardHome />} />
             <Route path="add" element={<AddResident />} />
-            
+            <Route path="resident" element={<Resident />} />
+
           </Route>
           <Route path="/admin-login" element={<AdminLogin />} />
           <Route path="/admin-signup" element={<AdminSignUp />} />
         </Routes>
-      } */}
+      }
       {
-        user &&
+        user && path !== '/admin-login' && path.slice(0, 10) !== '/dashboard' &&
         <>
 
           <Navbar>
           </Navbar>
           <Routes>
             <Route path="/" element={<Home />} />
-
+            {/* <Route path="/admin-login" element={<AdminLogin />} /> */}
             <Route path="/login" element={<Login />} />
             <Route path="/signup" element={<SignUp />} />
             <Route path="/admin-signup" element={<AdminSignUp />} />
@@ -54,7 +59,13 @@ function App() {
             <Route path="/forget-pass" element={<ForgetPass />} />
             <Route path="/reset-pass" element={<ResetPass />} />
             <Route path='/hotel-details/:id' element={<HotelDetails />}></Route>
-            <Route path='/booking-hotel/:id' element={<BookingHotel />}></Route>
+            <Route path='/booking-hotel/:id' element={
+              <PrivateRoute>
+                <BookingHotel />
+              </PrivateRoute>
+            }>
+
+            </Route>
 
             <Route path="*" element={<NotFound />} />
 

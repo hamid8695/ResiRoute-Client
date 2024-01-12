@@ -1,30 +1,37 @@
 import React, { useEffect, useState } from 'react';
 import { HiUserGroup } from 'react-icons/hi';
-import { AiOutlineShoppingCart } from 'react-icons/ai';
-import { BiPackage } from 'react-icons/bi';
+import { GrTransaction } from "react-icons/gr";
+import { GrUserAdmin } from "react-icons/gr";
+import { MdHomeWork } from "react-icons/md";
+import { MdDelete } from "react-icons/md";
+
 import fetcher from '../api';
 // import totalUrl from '../utils/totalUrl';
 
 const DashboardHome = () => {
-
     const [userlist, setUserlsit] = useState([]);
+    const [hostlist, setHostlsit] = useState([]);
     const [urllists, setUrllsits] = useState([]);
-    // const [count, expiredUrl] = totalUrl(urllists);
     const token = localStorage.getItem("accessToken");
 
     useEffect(() => {
-        token && (async () => {
-            const result = await fetcher.get("api/admin/users/list", {
-                headers: {
-                    Authorization: `Bearer ${token}`
-                }
-            })
-            setUserlsit(result?.data?.data)
+        (async () => {
+            const result = await fetcher.get("/api/user/list"
+            )
+            setUserlsit(result?.data?.result)
         })();
     }, []);
     useEffect(() => {
+        (async () => {
+            const result = await fetcher.get("/api/user/hostlist"
+            )
+            setHostlsit(result?.data?.result)
+        })();
+    }, []);
+  
+    useEffect(() => {
         token && (async () => {
-            const result = await fetcher.get("api/admin/url/all-urls", {
+            const result = await fetcher.get("sapi/admin/url/all-url", {
                 headers: {
                     Authorization: `Bearer ${token}`
                 }
@@ -43,7 +50,7 @@ const DashboardHome = () => {
                     <div className="flex items-start gap-4 mb-6">
                         <div className='flex items-center h-full p-3 rounded-full bg-primary'><HiUserGroup className='text-3xl text-white' /></div>
                         <div className="flex flex-col">
-                            {/* <span className="text-2xl font-semibold">{userlist?.length}</span> */}
+                            <span className="text-2xl font-semibold">{userlist?.length}+</span>
                             <span className="text-gray-400 text-lg">Total User</span>
                         </div>
                     </div>
@@ -51,20 +58,31 @@ const DashboardHome = () => {
                 </div>
                 <div className="p-4 transition-shadow border rounded-lg shadow-sm hover:shadow-lg w-80">
                     <div className="flex items-start gap-4 mb-6">
-                        <div className='flex items-center h-full p-3 rounded-full bg-orange-500'><AiOutlineShoppingCart className='text-3xl text-white' /></div>
+                        <div className='flex items-center h-full p-3 rounded-full bg-orange-500'><GrUserAdmin className='text-3xl text-white' /></div>
                         <div className="flex flex-col">
-                            {/* <span className="text-2xl font-semibold">{count}</span> */}
-                            <span className="text-gray-400 text-lg">Total Url</span>
+                            <span className="text-2xl font-semibold">{hostlist?.length}+</span>
+                            <span className="text-gray-400 text-lg">Total Host</span>
                         </div>
                     </div>
 
                 </div>
                 <div className="p-4 transition-shadow border rounded-lg shadow-sm hover:shadow-lg w-80">
                     <div className="flex items-start gap-4 mb-6">
-                        <div className='flex items-center h-full p-3 rounded-full bg-pink-500'><BiPackage className='text-3xl text-white' /></div>
-                        <div className="flex flex-col">
+                        <div className='flex items-center h-full p-3 rounded-full bg-pink-500'><MdHomeWork
+                            className='text-3xl text-white' /></div>
+                        <div className="flex flex-col"> 2000+
                             {/* <span className="text-2xl font-semibold">{expiredUrl}</span> */}
-                            <span className="text-gray-400 text-lg">Total Expired Url</span>
+                            <span className="text-gray-400 text-lg">Total Resident</span>
+                        </div>
+                    </div>
+
+                </div>
+                <div className="p-4 transition-shadow border rounded-lg shadow-sm hover:shadow-lg w-80">
+                    <div className="flex items-start gap-4 mb-6">
+                        <div className='flex items-center h-full p-3 rounded-full bg-pink-500'><GrTransaction className='text-3xl text-white' /></div>
+                        <div className="flex flex-col">2500+
+                            {/* <span className="text-2xl font-semibold">{expiredUrl}</span> */}
+                            <span className="text-gray-400 text-lg">Total Booking</span>
                         </div>
                     </div>
 
@@ -77,24 +95,25 @@ const DashboardHome = () => {
                         {/* head */}
                         <thead>
                             <tr>
-                                <th></th>
+                                <th>Serial</th>
                                 <th>Name</th>
-                                <th>User Type</th>
                                 <th>Email</th>
-                                <th>Daily Limit</th>
-                                <th>Creation Date</th>
+                                <th>Is Banned</th>
+                                <th>Adress</th>
+                                <th>Action</th>
                             </tr>
                         </thead>
+                        
                         <tbody>
                             {
                                 userlist?.map((user, index) =>
                                     <tr key={user._id}>
                                         <th>{index + 1}</th>
                                         <th>{user?.fullname}</th>
-                                        <td>{!user?.isAdmin && "User"}</td>
                                         <td>{user?.email}</td>
-                                        <td>{user?.dailyLimit}</td>
-                                        <td>{user?.createdAt.slice(0, 10)}</td>
+                                        <td>{user?.isBanned === false ? 'Yes' : 'No'}</td>
+                                        <td>{user?.address}</td>
+                                        <td className='text-2xl text-red-700'><MdDelete /></td>
                                     </tr>)
                             }
                         </tbody>

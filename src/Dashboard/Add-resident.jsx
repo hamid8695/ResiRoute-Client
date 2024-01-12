@@ -7,11 +7,9 @@ import ResidentInfoByHost from '../authentication/Resident-Info-by-Host';
 
 const AddResident = () => {
     const userInfo = JSON.parse(localStorage.getItem('loginUser'));
-    console.log(userInfo)
+    console.log('user',userInfo)
     const { register, handleSubmit, reset } = useForm();
     const imageStorageKey = '1c47ecbac30f9168913be4c44e47e86f'
-    const loginUserInfo = JSON.parse(localStorage.getItem('loginUser'));
-    console.log(loginUserInfo)
 
     const uploadImage = async (url, formData) => {
         try {
@@ -69,13 +67,16 @@ const AddResident = () => {
                 type: "Point",
                 coordinates: [Number(longitude), Number(latitude)]
             }
-            otherData.host_info = userInfo?._id;
-            otherData.host_name = userInfo?.fullname;
+            otherData.host_info = userInfo?.data?._id;
+            otherData.host_name = userInfo?.data?.fullname;
 
             console.log(otherData)
 
             const url = '/api/resident/create'
             const result = await fetcher.post(url, otherData);
+            toast.success("Successfully Added in the List!", {
+                position: 'top-center'
+            })
             console.log(result)
         }, [1500])
 

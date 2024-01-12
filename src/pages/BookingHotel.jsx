@@ -13,7 +13,6 @@ const BookingHotel = () => {
     const [date, setDate] = useState(new Date());
     const { register, handleSubmit, reset } = useForm();
     const loginUserInfo = JSON.parse(localStorage.getItem('loginUser'));
-    console.log(loginUserInfo)
     const getAResident = async () => {
         try {
             const result = await fetcher.get(`/api/resident/single/${id}`);
@@ -31,9 +30,9 @@ const BookingHotel = () => {
     const onSubmit = async (data) => {
         const dataObj = {
             hotel_id: saveResident?._id,
-            guest_name: loginUserInfo?.fullname,
+            guest_name: loginUserInfo?.data?.fullname,
             date_of_booking: format(date, 'PP'),
-            email: loginUserInfo?.email,
+            email: loginUserInfo?.data?.email,
             price: saveResident?.price,
             contact: data?.contact,
             number_of_member: data?.number_of_member
@@ -44,9 +43,9 @@ const BookingHotel = () => {
                 console.log(result);
                 toast.success("Your booking request is sent to Host. Please confirm your payment!", {
                     position: 'top-center'
-                }).catch((error) => {
-                    console.log(error)
                 })
+            }).catch((error) => {
+                console.log(error)
             })
     }
     return (

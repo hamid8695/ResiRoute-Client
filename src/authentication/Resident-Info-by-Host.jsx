@@ -1,13 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import fetcher from '../api';
 import { useNavigate } from 'react-router-dom';
+
 const ResidentInfoByHost = ({ loginUserInfo }) => {
     const navigate = useNavigate();
     const [allResident, setAllResident] = useState([])
     const getAllResident = async () => {
         try {
             const data = {
-                host_info: loginUserInfo?._id
+                host_info: loginUserInfo?.data?._id
             }
             const result = await fetcher.post("/api/resident/get-resident-by-host", data);
             setAllResident(result?.data?.data)
@@ -19,7 +20,6 @@ const ResidentInfoByHost = ({ loginUserInfo }) => {
     useEffect(() => {
         getAllResident();
     }, [])
-    console.log(allResident)
     return (
         <div className="overflow-x-auto">
             <table className="table w-full">

@@ -11,9 +11,9 @@ const BookingDetails = ({ loginUserInfo, bookingHotel }) => {
     const onSubmit = async (data) => {
         const dataObj = {
             hotel_id: bookingHotel?._id,
-            guest_name: loginUserInfo?.fullname,
+            guest_name: loginUserInfo?.data?.fullname,
             date_of_booking: format(date, 'PP'),
-            email: loginUserInfo?.email,
+            email: loginUserInfo?.data?.email,
             price: bookingHotel?.price,
             contact: data?.contact,
             number_of_member: data?.number_of_member
