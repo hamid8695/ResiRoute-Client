@@ -21,6 +21,7 @@ import BookingHotel from "./pages/BookingHotel"
 import PaymentSuccess from "./pages/paymentSuccess"
 import Resident from "./Dashboard/Resident"
 import PrivateRoute from "./authentication/PrivateRoute"
+import Footer from "./components/Footer"
 
 function App() {
   const location = useLocation();
@@ -72,6 +73,7 @@ function App() {
             <Route path="*" element={<NotFound />} />
 
           </Routes>
+          <Footer/>
         </>
       }
 

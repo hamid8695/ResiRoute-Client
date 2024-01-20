@@ -168,18 +168,18 @@ const HotelDetails = () => {
                     </div>
                     <div class="py-12 px-6 lg:px-20 max-w-xl lg:max-w-5xl lg:w-1/2 rounded-t-none border lg:rounded-lg">
                         <h2 class="text-3xl text-gray-800 font-bold">
-                            {saveResident?.resident_name}
+                        {saveResident?.resident_name}
                         </h2>
                         <p class="mt-4 text-gray-600">
                             {saveResident?.description}
                         </p>
                         <div class=" py-4">
-                            <h3 class="text-lg font-medium text-gray-900">Contact</h3>
-                            <p class="mt-1 text-gray-600">Host: {saveResident?.host_name
+                            <h3 class="text-lg font-medium text-gray-900">Contact </h3>
+                            <p class="mt-1 text-gray-600">🤵 Host: {saveResident?.host_name
                             }</p>
-                            <p class="mt-1 text-gray-600">Email: {saveResident?.email
+                            <p class="mt-1 text-gray-600">✉ Email: {saveResident?.email
                             }</p>
-                            <p class="mt-1 text-gray-600">Phone: {saveResident?.contact_number
+                            <p class="mt-1 text-gray-600">☎ Phone: {saveResident?.contact_number
                             }</p>
                         </div>
                         <span class="text-3xl sm:text-4xl font-bold text-orange-600">৳{saveResident?.price
