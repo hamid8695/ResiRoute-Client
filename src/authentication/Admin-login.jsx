@@ -37,7 +37,7 @@ const AdminLogin = () => {
             <div class="min-h-screen">
                 <div class="relative py-3 sm:max-w-xl sm:mx-auto">
                     <div
-                        class="absolute inset-0 bg-gradient-to-r from-[#57E4A5] to-[#B7DA64] shadow-lg transform -skew-y-6 sm:skew-y-0 sm:-rotate-6 sm:rounded-3xl">
+                        class="absolute inset-0 bg-gradient-to-r from-[#4338CA] to-[#5F7DB7] shadow-lg transform -skew-y-6 sm:skew-y-0 sm:-rotate-6 sm:rounded-3xl">
                     </div>
                     <div class="relative px-4 py-10 bg-white shadow-lg sm:rounded-3xl sm:p-20">
 
@@ -56,7 +56,7 @@ const AdminLogin = () => {
                                         <label for="password" class="absolute left-0 -top-3.5 text-gray-600 text-sm peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-440 peer-placeholder-shown:top-2 transition-all peer-focus:-top-3.5 peer-focus:text-gray-600 peer-focus:text-sm">Password</label>
                                     </div>
                                     <div class="relative">
-                                        <button type='submit'  class="bg-gradient-to-r from-[#57E4A5] to-[#B7DA64] text-white rounded-md px-2 py-1">Submit</button>
+                                        <button type='submit'  class="bg-gradient-to-r from-[#4338CA] to-[#5F7DB7] text-white rounded-md px-2 py-1">Submit</button>
                                     </div>
                                 </form>
                             </div>
