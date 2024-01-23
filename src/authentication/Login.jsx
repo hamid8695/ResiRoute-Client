@@ -17,7 +17,6 @@ const Login = () => {
             const url = '/api/user/login'
             const result = await fetcher.post(url, data);
             localStorage.setItem("loginUser", JSON.stringify(result?.data));
-           console.log('logihn',result?.data?.token)
             toast.success(result?.data?.message, {
                 position: 'top-center'
             })

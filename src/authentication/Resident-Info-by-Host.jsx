@@ -30,24 +30,7 @@ const ResidentInfoByHost = ({ loginUserInfo }) => {
     }, [])
 
 
-    const handleUpdateResidentPrice = () => {
-        Swal.fire({
-            title: "Update Price",
-            html: `
-              You can use <b>bold text</b>,
-              <a href="#">links</a>,
-              and other HTML tags
-            `,
-            showCloseButton: true,
-            showCancelButton: true,
-            focusConfirm: false,
-            confirmButtonText: `
-              <i class="fa fa-thumbs-up"></i> Great!
-            `,
-
-        });
-    }
-
+  
     const onSubmit = async (data) => {
         try {
             data.resident_id = userChoiceHotel;
@@ -64,10 +47,7 @@ const ResidentInfoByHost = ({ loginUserInfo }) => {
     }
 
     return (
-
-
         <div className="overflow-x-auto">
-
             {
                 showModal && <div class="fixed z-50 inset-0 overflow-y-auto">
                     <div class="flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
@@ -75,10 +55,7 @@ const ResidentInfoByHost = ({ loginUserInfo }) => {
                         <div class="fixed inset-0 transition-opacity" aria-hidden="true">
                             <div class="absolute inset-0 bg-gray-500 opacity-75"></div>
                         </div>
-
                         <span class="hidden sm:inline-block sm:align-middle sm:h-screen" aria-hidden="true">&#8203;</span>
-
-
                         <div class="inline-block align-bottom bg-white rounded-lg px-4 pt-5 pb-4 text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full sm:p-6"
                             role="dialog" aria-modal="true" aria-labelledby="modal-headline">
                             <div class="hidden sm:block absolute top-0 right-0 pt-4 pr-4">
@@ -93,10 +70,8 @@ const ResidentInfoByHost = ({ loginUserInfo }) => {
                                 <div class="sm:flex sm:items-start">
                                     <div
                                         class="mx-auto flex-shrink-0 flex items-center justify-center h-16 w-16 rounded-full bg-blue-100 sm:mx-0 sm:h-10 sm:w-10">
-
                                         <MdSystemUpdateAlt className='text-xl' />
                                     </div>
-
                                     <div class="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left w-full">
                                         <h3 class="text-lg leading-6 font-medium text-gray-900" id="modal-headline">
                                             Update Price
@@ -104,36 +79,26 @@ const ResidentInfoByHost = ({ loginUserInfo }) => {
                                         <div class="mt-2">
                                             <input  {...register("price")} type="text" placeholder="Type Price" className="input input-bordered input-primary w-full max-w-xs" />
                                         </div>
-
                                     </div>
-
                                 </div>
                                 <div class="mt-5 sm:mt-4 sm:flex sm:flex-row-reverse">
                                     <button type="button" onClick={() => {
                                         setShowModal(false);
-
                                     }} data-behavior="cancel" class="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-white text-base font-medium text-gray-700 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500
-                                
-                                
                                  sm:ml-3 sm:w-auto sm:text-sm">
                                         Cancel
                                     </button>
-
                                     <button type='submit' data-behavior="commit"
-                                        class="mt-3 w-full inline-flex justify-center rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-blue-600 text-base font-medium text-white hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500  sm:mt-0 sm:w-auto sm:text-sm"
-                                    >
+                                        class="mt-3 w-full inline-flex justify-center rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-blue-600 text-base font-medium text-white hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500  sm:mt-0 sm:w-auto sm:text-sm">
                                         Update
                                     </button>
                                 </div>
                             </form>
                         </div>
-
                     </div>
                 </div>
             }
-
             <table className="table w-full">
-
                 <thead>
                     <tr>
                         <th>No.</th>
@@ -167,14 +132,11 @@ const ResidentInfoByHost = ({ loginUserInfo }) => {
                                     setShowModal(true);
                                     setUserChoiceHotel(resident?._id);
                                 }
-
                                 }>Update Price</label>
                                     <label className="btn btn-sm" onClick={() => navigate(`/booking-info-by-host/${resident?._id}`)}>Booking List</label></td>
                             </tr>
                         )}
                 </tbody>
-
-
             </table>
         </div>
     );

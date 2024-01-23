@@ -66,10 +66,9 @@ const HostDashboardInfo = () => {
             })
             console.log(result)
         }, [1500])
-
-
-
     };
+
+
     return (
         <div className="w-full mt-10">
             <div className='flex justify-between mx-12 py-3'>
@@ -242,15 +241,12 @@ const HostDashboardInfo = () => {
                     </div>
                 </div>
                 <div>
-
                 <dialog id="my_modal_4" className="modal">
-                    {console.log('saddddddddddddddddddddd')}
                 <div className="modal-box w-11/12 max-w-5xl">
                     <h3 className="font-bold text-lg">Hello!</h3>
                     <p className="py-4">Click the button below to close</p>
                     <div className="modal-action">
                         <form method="dialog">
-                            {/* if there is a button, it will close the modal */}
                             <button className="btn">Close</button>
                         </form>
                     </div>

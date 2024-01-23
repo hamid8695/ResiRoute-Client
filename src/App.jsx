@@ -22,6 +22,7 @@ import PaymentSuccess from "./pages/paymentSuccess"
 import Resident from "./Dashboard/Resident"
 import PrivateRoute from "./authentication/PrivateRoute"
 import Footer from "./components/Footer"
+import CustomerBookingInfo from "./pages/CustomerBookingInfo"
 
 function App() {
   const location = useLocation();
@@ -61,6 +62,7 @@ function App() {
             <Route path="/booking-info-by-host/:id" element={<BookingList />} />
             <Route path="/forget-pass" element={<ForgetPass />} />
             <Route path="/reset-pass" element={<ResetPass />} />
+            <Route path="/customer-booking" element={<CustomerBookingInfo />} />
             <Route path='/hotel-details/:id' element={<HotelDetails />}></Route>
             <Route path='/booking-hotel/:id' element={
               <PrivateRoute>

@@ -27,6 +27,9 @@ const Navbar = ({ children }) => {
                  {loginUserInfo?.data?.role === 'Host' &&
                      <Link to='/host-dashboard' class="text-gray-800 bg-indigo-100 hover:bg-indigo-200 inline-flex items-center justify-center px-3 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm ">Host Dashboard
                      </Link>}
+                 {loginUserInfo?.data?.role === 'guest' &&
+                     <Link to='/customer-booking' class="text-gray-800 bg-indigo-100 hover:bg-indigo-200 inline-flex items-center justify-center px-3 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm ">Booking Info
+                     </Link>}
                   </>
                 :
                 <>
