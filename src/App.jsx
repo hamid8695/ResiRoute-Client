@@ -18,7 +18,7 @@ import AddResident from "./Dashboard/Add-resident"
 import HostDashboardInfo from "./authentication/Host-Dashboard"
 import BookingList from "./components/BookingList"
 import BookingHotel from "./pages/BookingHotel"
-import PaymentSuccess from "./pages/paymentSuccess"
+// import PaymentSuccess from "./pages/paymentSuccess"
 import Resident from "./Dashboard/Resident"
 import PrivateRoute from "./authentication/PrivateRoute"
 import Footer from "./components/Footer"
@@ -58,7 +58,7 @@ function App() {
             <Route path="/host-dashboard" element={
               <PrivateRoute> <HostDashboardInfo /></PrivateRoute>
             } />
-            <Route path="/payment-success/:id" element={<PaymentSuccess />} />
+            {/* <Route path="/payment-success/:id" element={<PaymentSuccess />} /> */}
             <Route path="/booking-info-by-host/:id" element={<BookingList />} />
             <Route path="/forget-pass" element={<ForgetPass />} />
             <Route path="/reset-pass" element={<ResetPass />} />
