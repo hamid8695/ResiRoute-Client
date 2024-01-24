@@ -58,7 +58,7 @@ function App() {
             <Route path="/host-dashboard" element={
               <PrivateRoute> <HostDashboardInfo /></PrivateRoute>
             } />
-            {/* <Route path="/payment-success/:id" element={<PaymentSuccess />} /> */}
+            <Route path="/payment-success/:id" element={<PaymentSuccess />} />
             <Route path="/booking-info-by-host/:id" element={<BookingList />} />
             <Route path="/forget-pass" element={<ForgetPass />} />
             <Route path="/reset-pass" element={<ResetPass />} />
