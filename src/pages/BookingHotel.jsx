@@ -17,7 +17,6 @@ const BookingHotel = () => {
         try {
             const result = await fetcher.get(`/api/resident/single/${id}`);
             setSaveResident(result?.data?.data)
-
         } catch (error) {
             console.log(error);
         }
@@ -26,13 +25,13 @@ const BookingHotel = () => {
         getAResident();
     }, [])
 
-
     const onSubmit = async (data) => {
         const dataObj = {
             hotel_id: saveResident?._id,
             guest_name: loginUserInfo?.data?.fullname,
             date_of_booking: format(date, 'PP'),
             email: loginUserInfo?.data?.email,
+            guest_id: loginUserInfo?.data?._id,
             price: saveResident?.price,
             contact: data?.contact,
             number_of_member: data?.number_of_member
@@ -40,7 +39,6 @@ const BookingHotel = () => {
         await fetcher.post("/api/booking/payment", dataObj)
             .then((result) => {
                 window.location.replace(result.data.url)
-                console.log(result);
                 toast.success("Your booking request is sent to Host. Please confirm your payment!", {
                     position: 'top-center'
                 })

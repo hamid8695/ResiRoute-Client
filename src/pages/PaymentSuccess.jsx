@@ -5,9 +5,6 @@ const PaymentSuccess = () => {
     const { id } = useParams();
     const navigate = useNavigate();
     return (
-        // <div>
-        //     <h1>Payment success id is {id}</h1>
-        // </div>
         <div class="flex items-center justify-center h-screen">
       <div>
         <div class="flex flex-col items-center space-y-2">
