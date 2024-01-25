@@ -37,9 +37,6 @@ const Reviews = ({ hotel_id }) => {
                     <div className="collapse-content mt-[-10px]">
                         <p>{review?.feedback}</p>
                     </div>
-                    {/* <div className="chat chat-start">
-                        <div className="chat-bubble chat-bubble-accent">{review?.feedback}</div>
-                    </div> */}
                 </div>)
             }
 
