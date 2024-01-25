@@ -51,7 +51,6 @@ function App() {
           </Navbar>
           <Routes>
             <Route path="/" element={<Home />} />
-            {/* <Route path="/admin-login" element={<AdminLogin />} /> */}
             <Route path="/login" element={<Login />} />
             <Route path="/signup" element={<SignUp />} />
             <Route path="/admin-signup" element={<AdminSignUp />} />
