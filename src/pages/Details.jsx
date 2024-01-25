@@ -4,8 +4,8 @@ import fetcher from '../api';
 
 import ReactStars from 'react-rating-stars-component';
 import { toast } from 'react-toastify';
-// import Reviews from '../components/reviews';
-// import BookingModel from '../components/Booking-Model';
+import Reviews from '../components/Reviews';
+import BookingModel from '../components/Booking-Model';
 
 const HotelDetails = () => {
     const { id } = useParams();
@@ -218,9 +218,9 @@ const HotelDetails = () => {
                     </div>
                 </div>
             </div>
-            {/* <div className='mx-48 mt-8'>
+            <div className='mx-48 mt-8'>
                 {saveResident?._id && <Reviews hotel_id={saveResident?._id} />}
-            </div> */}
+            </div>
 
         </div>
 
