@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const fetcher = axios.create({
-  baseURL: "https://resi-route-server.vercel.app",
+  baseURL: "http://localhost:3001",
 });
 
 export default fetcher;
