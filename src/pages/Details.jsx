@@ -4,7 +4,7 @@ import fetcher from '../api';
 
 import ReactStars from 'react-rating-stars-component';
 import { toast } from 'react-toastify';
-import Reviews from '../components/reviews';
+// import Reviews from '../components/reviews';
 import BookingModel from '../components/Booking-Model';
 
 const HotelDetails = () => {
