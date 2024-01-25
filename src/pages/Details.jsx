@@ -218,9 +218,9 @@ const HotelDetails = () => {
                     </div>
                 </div>
             </div>
-            <div className='mx-48 mt-8'>
+            {/* <div className='mx-48 mt-8'>
                 {saveResident?._id && <Reviews hotel_id={saveResident?._id} />}
-            </div>
+            </div> */}
 
         </div>
 
