@@ -6,6 +6,7 @@ import ReactStars from 'react-rating-stars-component';
 import { toast } from 'react-toastify';
 import Reviews from '../components/Reviews';
 import BookingModel from '../components/Booking-Model';
+import { FloatingWhatsApp } from 'react-floating-whatsapp';
 
 const HotelDetails = () => {
     const { id } = useParams();
@@ -79,7 +80,8 @@ const HotelDetails = () => {
     }, [saveResident])
 
     console.log(saveResident?.address)
-
+const nameeee = "Azad"
+const numberrr = "8801833948110"
     return (
         <div className='mt-24'>
 
@@ -221,7 +223,7 @@ const HotelDetails = () => {
             <div className='mx-48 mt-8'>
                 {saveResident?._id && <Reviews hotel_id={saveResident?._id} />}
             </div>
-
+            <FloatingWhatsApp  accountName={nameeee} phoneNumber={numberrr} darkMode={true} chatMessage="Hello, Sir. How can I help you?"/>
         </div>
 
     );
