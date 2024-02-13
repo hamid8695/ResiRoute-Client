@@ -77,13 +77,8 @@ const AddResident = () => {
             toast.success("Successfully Added in the List!", {
                 position: 'top-center'
             })
-            console.log(result)
         }, [1500])
-
-
-
     };
-
 
     return (
         <div className="w-full">

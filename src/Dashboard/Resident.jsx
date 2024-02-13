@@ -17,6 +17,9 @@ const Resident = () => {
     useEffect(() => {
         getAllResident();
     }, [])
+
+
+    console.log("allllllllllllllll",allResident)
     return (
         <div>
             <h1 className='text-lg p-2 ml-8 font-semibold'>All Hotel/House List:</h1>
@@ -33,7 +36,7 @@ const Resident = () => {
                     </tr>
                 </thead>
                 <tbody class="bg-white divide-y divide-gray-200">{
-                    allResident.slice(10)?.map((hotel, index) => (
+                    allResident?.slice(0,10).map((hotel, index) => (
                         <tr id={index}>
                             <td class="px-6 py-4 whitespace-nowrap">{index+1}</td>
                             <td class="px-6 py-4 whitespace-nowrap"> <div class="flex-shrink-0 h-10 w-10">
@@ -46,7 +49,7 @@ const Resident = () => {
                                 {
                                     hotel?.is_active ?
                                     <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">Active</span> : 
-                                    <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-red-100 text-red-800">Banned</span>
+                                    <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-red-100 text-red-800">Inactive</span>
                                 }
                                
                             </td>
