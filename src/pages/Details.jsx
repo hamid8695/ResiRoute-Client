@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import fetcher from '../api';
-
+import TawkMessengerReact from '@tawk.to/tawk-messenger-react';
 import ReactStars from 'react-rating-stars-component';
 import { toast } from 'react-toastify';
 import Reviews from '../components/Reviews';
@@ -223,7 +223,10 @@ const numberrr = "8801833948110"
             <div className='mx-48 mt-8'>
                 {saveResident?._id && <Reviews hotel_id={saveResident?._id} />}
             </div>
-            <FloatingWhatsApp  accountName={nameeee} phoneNumber={numberrr} darkMode={true} chatMessage="Hello, Sir. How can I help you?"/>
+            {/* <FloatingWhatsApp  accountName={nameeee} phoneNumber={numberrr} darkMode={true} chatMessage="Hello, Sir. How can I help you?"/> */}
+            <TawkMessengerReact
+                propertyId="65c783060ff6374032cb9411"
+                widgetId="1hm9lfl1u"/>
         </div>
 
     );
