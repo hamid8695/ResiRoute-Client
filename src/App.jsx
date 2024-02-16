@@ -28,13 +28,13 @@ import Host from "./Dashboard/Host"
 function App() {
   const location = useLocation();
   let path = location?.pathname;
-  console.log('gghg',path)
+  console.log(path)
   console.log('pathhttt', path.slice(0, 10))
   const [user, setUser] = useState(true)
   return (
     <>
       {
-        (path.includes('/admin-login') || path.includes('/dashboard')) && <Routes>
+        (path === '/admin-login' || path.slice(0, 10) === '/dashboard') && <Routes>
           <Route path="/dashboard" element={<Dashboard />} >
             <Route index element={<DashboardHome />} />
             <Route path="host" element={<Host />} />
@@ -46,7 +46,7 @@ function App() {
         </Routes>
       }
       {
-        user && !path.includes('/admin-login') && !path.includes('/dashboard') &&
+        user && path !== '/admin-login' && path.slice(0, 10) !== '/dashboard' &&
         <>
 
           <Navbar>
