@@ -9,8 +9,11 @@ import { toast } from 'react-toastify';
 
 const BookingHotel = () => {
     const { id } = useParams();
-    const [saveResident, setSaveResident] = useState({})
-    const [date, setDate] = useState(new Date());
+    const [saveResident, setSaveResident] = useState({});
+    const [totalMember, setTotalMember]=useState(1)
+    const [date, setDate] = useState();
+    const [dateCheckOut, setDateCheckOut] = useState();
+    const [activeCalender, setActiveCalender]= useState(1)
     const { register, handleSubmit, reset } = useForm();
     const loginUserInfo = JSON.parse(localStorage.getItem('loginUser'));
     const getAResident = async () => {
@@ -30,9 +33,10 @@ const BookingHotel = () => {
             hotel_id: saveResident?._id,
             guest_name: loginUserInfo?.data?.fullname,
             date_of_booking: format(date, 'PP'),
+            date_of_checkout: format(dateCheckOut, 'PP'),
             email: loginUserInfo?.data?.email,
             guest_id: loginUserInfo?.data?._id,
-            price: saveResident?.price,
+            price: saveResident?.price*totalMember,
             contact: data?.contact,
             number_of_member: data?.number_of_member
         }
@@ -46,6 +50,7 @@ const BookingHotel = () => {
                 console.log(error)
             })
     }
+
     return (
         <div className='mt-28'>
             
@@ -55,9 +60,18 @@ const BookingHotel = () => {
                 <div class="p-4 max-w-sm">
                     <div className='mr-7'>
                         <div className='pt-8  card shrink-0 w-full max-w-sm shadow-lg bg-base-100'>
-                            <div className="badge badge-primary badge-outline ml-6 p-4">{date ? format(date, 'PP') : "Please Pick a Date"}</div>
+                            <div className='flex justify-between'>
+                            <div className="badge badge-primary badge-outline ml-6 p-4 cursor-pointer" onClick={()=>setActiveCalender(1)}>{date ? format(date, 'PP') : "Check In Date"}</div>
+                            <div className="badge badge-primary badge-outline ml-6 p-4 cursor-pointer " onClick={()=>setActiveCalender(2)}>{dateCheckOut ? format(dateCheckOut, 'PP') : "Check Out Date"}</div>
+                            </div>
+                            {
+                                activeCalender ===1 ?
+                                <DayPicker mode='single' selected={date} onSelect={setDate} />
+                                :
+                                <DayPicker mode='single' selected={dateCheckOut} onSelect={setDateCheckOut} />
+                            }
 
-                            <DayPicker mode='single' selected={date} onSelect={setDate} />
+                           
                         </div>
                     </div>
                 </div>
@@ -66,12 +80,12 @@ const BookingHotel = () => {
                     <div className="card shrink-0 w-full max-w-sm shadow-lg bg-base-100">
                         <form className="card-body" onSubmit={handleSubmit(onSubmit)}>
 
-                            <div className="badge badge-primary badge-outline p-4">Price: {saveResident?.price}</div>
+                            <div className="badge badge-primary badge-outline p-4">Price: {saveResident?.price*totalMember}</div>
                             <div className="form-control">
                                 <div className="label">
                                     <span className="label-text">Number of Member</span>
                                 </div>
-                                <input type="text" placeholder="Number of Member" className="input input-bordered w-72 max-w-xs"  {...register("number_of_member")} />
+                                <input type="text" placeholder="Number of Member" className="input input-bordered w-72 max-w-xs"   {...register("number_of_member")} onChange={(e)=>setTotalMember(e.target.value)} />
                             </div>
                             <div className="form-control">
                                 <div className="label">
