@@ -17,9 +17,9 @@ const Dashboard = () => {
 
     const allMenu = [
         { name: "Dashboard", link: "/dashboard", icon: MdOutlineDashboard },
-        { name: "Host", link: "/dashboard/add", icon: GrUserAdmin },
+        { name: "Host", link: "/dashboard/host", icon: GrUserAdmin },
         { name: "Resident", link: "/dashboard/resident", icon: MdHomeWork },
-        { name: "Booking", link: "/dashboard/add", icon: GrTransaction },
+        // { name: "Booking", link: "/dashboard/add", icon: GrTransaction },
         { name: "Logout", link: "/login", icon: BiLogOut, margin: true },
     ]
     return (

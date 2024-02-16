@@ -23,6 +23,7 @@ import Resident from "./Dashboard/Resident"
 import PrivateRoute from "./authentication/PrivateRoute"
 import Footer from "./components/Footer"
 import CustomerBookingInfo from "./pages/CustomerBookingInfo"
+import Host from "./Dashboard/Host"
 
 function App() {
   const location = useLocation();
@@ -35,7 +36,7 @@ function App() {
         (path === '/admin-login' || path.slice(0, 10) === '/dashboard') && <Routes>
           <Route path="/dashboard" element={<Dashboard />} >
             <Route index element={<DashboardHome />} />
-            <Route path="add" element={<AddResident />} />
+            <Route path="host" element={<Host />} />
             <Route path="resident" element={<Resident />} />
 
           </Route>

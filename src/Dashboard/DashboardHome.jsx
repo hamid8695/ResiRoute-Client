@@ -6,6 +6,7 @@ import { MdHomeWork } from "react-icons/md";
 import { MdDelete } from "react-icons/md";
 
 import fetcher from '../api';
+import { toast } from 'react-toastify';
 // import totalUrl from '../utils/totalUrl';
 
 const DashboardHome = () => {
@@ -29,6 +30,22 @@ const DashboardHome = () => {
         })();
     }, []);
   
+
+
+    const handleDeleteUser = async(user, index)=>{
+        await fetcher.post(`/api/user/delete-user/${user?._id}`
+        ).then((result)=>{
+            toast.success("User deleted successfully!", {
+                position: 'top-center'
+            })
+            const updatedUsers = [...userlist];
+            updatedUsers.splice(index, 1);
+            setUserlsit(updatedUsers);
+        }).catch((error)=>{
+            console.log(error);
+        })
+        
+    }
     useEffect(() => {
         token && (async () => {
             const result = await fetcher.get("sapi/admin/url/all-url", {
@@ -113,7 +130,7 @@ const DashboardHome = () => {
                                         <td>{user?.email}</td>
                                         <td>{user?.isBanned === false ? 'Yes' : 'No'}</td>
                                         <td>{user?.address}</td>
-                                        <td className='text-2xl text-red-700'><MdDelete /></td>
+                                        <td className='text-2xl text-red-700 cursor-pointer' onClick={()=>handleDeleteUser(user,index)}><MdDelete /></td>
                                     </tr>)
                             }
                         </tbody>
