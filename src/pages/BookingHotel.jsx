@@ -15,6 +15,9 @@ const BookingHotel = () => {
     const [dateCheckOut, setDateCheckOut] = useState();
     const [activeCalender, setActiveCalender]= useState(1)
     const { register, handleSubmit, reset } = useForm();
+
+    const millisecondsInADay = 1000 * 60 * 60 * 24;
+   const totalDays=(dateCheckOut-date)/millisecondsInADay;
     const loginUserInfo = JSON.parse(localStorage.getItem('loginUser'));
     const getAResident = async () => {
         try {
@@ -36,7 +39,8 @@ const BookingHotel = () => {
             date_of_checkout: format(dateCheckOut, 'PP'),
             email: loginUserInfo?.data?.email,
             guest_id: loginUserInfo?.data?._id,
-            price: saveResident?.price*totalMember,
+            price:  totalDays>1 ? 
+                (saveResident?.price*totalMember*totalDays) : (saveResident?.price*totalMember),
             contact: data?.contact,
             number_of_member: data?.number_of_member
         }
@@ -80,7 +84,8 @@ const BookingHotel = () => {
                     <div className="card shrink-0 w-full max-w-sm shadow-lg bg-base-100">
                         <form className="card-body" onSubmit={handleSubmit(onSubmit)}>
 
-                            <div className="badge badge-primary badge-outline p-4">Price: {saveResident?.price*totalMember}</div>
+                            <div className="badge badge-primary badge-outline p-4">Price: {totalDays>1 ? 
+                            (saveResident?.price*totalMember*totalDays) : (saveResident?.price*totalMember)}</div>
                             <div className="form-control">
                                 <div className="label">
                                     <span className="label-text">Number of Member</span>
