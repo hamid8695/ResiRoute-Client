@@ -19,7 +19,38 @@ const Resident = () => {
     }, [])
 
 
-    console.log("allllllllllllllll",allResident)
+    const handleDeleteHotel = async (hotel, index) => {
+        await fetcher.post(`/api/resident/delete-hotel/${hotel?._id}`
+        ).then((result) => {
+            toast.success("Hotel deleted successfully!", {
+                position: 'top-center'
+            })
+            const updatedResidents = [...allResident];
+            updatedResidents.splice(index, 1);
+            setAllResident(updatedResidents);
+        }).catch((error) => {
+            console.log(error);
+        })
+
+    }
+
+    const changeHotelStatus = async (hotel, index, status) => {
+        const data = {
+            is_active: status
+        }
+        await fetcher.post(`/api/resident/change-status/${hotel?._id}`,data
+        ).then((result) => {
+            allResident[index].is_active = status;
+            setAllResident([...allResident]);
+            toast.success("Hotel Status Successfully Updated!", {
+                position: 'top-center'
+            })
+        }).catch((error) => {
+            console.log(error);
+        })
+    }
+
+
     return (
         <div>
             <h1 className='text-lg p-2 ml-8 font-semibold'>All Hotel/House List:</h1>
@@ -36,9 +67,9 @@ const Resident = () => {
                     </tr>
                 </thead>
                 <tbody class="bg-white divide-y divide-gray-200">{
-                    allResident?.slice(0,10).map((hotel, index) => (
+                    allResident?.slice(0, 10).map((hotel, index) => (
                         <tr id={index}>
-                            <td class="px-6 py-4 whitespace-nowrap">{index+1}</td>
+                            <td class="px-6 py-4 whitespace-nowrap">{index + 1}</td>
                             <td class="px-6 py-4 whitespace-nowrap"> <div class="flex-shrink-0 h-10 w-10">
                                 <img class="h-10 w-12" src={hotel?.img1} alt="" />
                             </div></td>
@@ -48,19 +79,19 @@ const Resident = () => {
                             <td class="px-6 py-4 whitespace-nowrap">
                                 {
                                     hotel?.is_active ?
-                                    <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">Active</span> : 
-                                    <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-red-100 text-red-800">Inactive</span>
+                                        <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-800 text-white cursor-pointer" onClick={() => changeHotelStatus(hotel, index, false)}>Active</span> :
+                                        <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-red-800 text-white cursor-pointer" onClick={() => changeHotelStatus(hotel, index, true)}>Inactive</span>
                                 }
-                               
+
                             </td>
                             <td class="px-6 py-4 whitespace-nowrap">
-                            <button className='text-2xl text-green-500'><CiEdit /></button>
-                                <button className='text-2xl text-red-600 ml-4'><MdDelete /></button>
+                                <button className='text-2xl text-green-500'><CiEdit /></button>
+                                <button className='text-2xl text-red-600 ml-4' onClick={() => handleDeleteHotel(hotel, index)}><MdDelete /></button>
                             </td>
                         </tr>
                     ))
                 }
-                   
+
                 </tbody>
             </table>
         </div>

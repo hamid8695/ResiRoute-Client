@@ -62,13 +62,12 @@ const AdminLogin = () => {
                             </div>
                         </div>
 
-                        <div class="w-full flex justify-center">
-                            {/* <span>Continue with Google</span> */}
+                        {/* <div class="w-full flex justify-center">
                             <p>Don't have an account?
                                     <Link to='/admin-signup' className="label-text-alt link text-sm link-hover"> Sign Up Here
                                     </Link>
                                 </p>
-                        </div>
+                        </div> */}
 
                     </div>
                 </div>
