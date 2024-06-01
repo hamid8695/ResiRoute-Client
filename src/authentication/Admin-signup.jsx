@@ -23,7 +23,7 @@ const AdminSignUp = () => {
 
     
     return (
-        <div className='bg-gray-300 flex justify-center pt-16'>
+        <div className='bg-gray-300 flex justify-center pt-32'>
             <div class="min-h-screen">
                 <div class="relative py-3 sm:max-w-xl sm:mx-auto">
                     <div

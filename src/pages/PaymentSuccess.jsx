@@ -3,6 +3,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 
 const PaymentSuccess = () => {
     const { id } = useParams();
+    console.log(id);
     const navigate = useNavigate();
     return (
         <div class="flex items-center justify-center h-screen">

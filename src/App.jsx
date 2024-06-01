@@ -14,7 +14,6 @@ import DashboardHome from "./Dashboard/DashboardHome"
 import { useState } from "react"
 import AdminSignUp from "./authentication/Admin-signup"
 import HotelDetails from "./pages/Details"
-import AddResident from "./Dashboard/Add-resident"
 import HostDashboardInfo from "./authentication/Host-Dashboard"
 import BookingList from "./components/BookingList"
 import BookingHotel from "./pages/BookingHotel"
@@ -48,7 +47,6 @@ function App() {
       {
         user && path !== '/admin-login' && path.slice(0, 10) !== '/dashboard' &&
         <>
-
           <Navbar>
           </Navbar>
           <Routes>
@@ -70,9 +68,7 @@ function App() {
                 <BookingHotel />
               </PrivateRoute>
             }>
-
             </Route>
-
             <Route path="*" element={<NotFound />} />
 
           </Routes>
