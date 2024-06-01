@@ -5,8 +5,8 @@ import TawkMessengerReact from '@tawk.to/tawk-messenger-react';
 import ReactStars from 'react-rating-stars-component';
 import { toast } from 'react-toastify';
 import Reviews from '../components/Reviews';
-import BookingModel from '../components/Booking-Model';
-import { FloatingWhatsApp } from 'react-floating-whatsapp';
+
+
 
 const HotelDetails = () => {
     const { id } = useParams();
@@ -58,20 +58,7 @@ const HotelDetails = () => {
     }
 
 
-    const mapouterStyle = {
-        position: 'relative',
-        textAlign: 'right',
-        height: '709px',
-        width: '724px',
-    };
 
-    const gmapCanvasStyle = {
-        overflow: 'hidden',
-        background: 'none',
-        height: '709px',
-        width: '724px',
-        borderRadius: '50px'
-    };
     const [selectedLocation, setSelectedLocation] = useState('Bangladesh'
     );
 
@@ -79,77 +66,61 @@ const HotelDetails = () => {
         setSelectedLocation(saveResident?.address)
     }, [saveResident])
 
-    console.log(saveResident?.address)
-const nameeee = "Azad"
-const numberrr = "8801833948110"
+
     return (
         <div className='mt-24'>
-
-<div class="bg-white dark:bg-gray-800  h-full py-6 sm:py-8 lg:py-12">
-    <div class="mx-36 max-w-screen-2xl px-4 md:px-8">
-        <div class="mb-4 flex items-center justify-between gap-8 sm:mb-8 md:mb-12">
-            <div class="flex items-center gap-2">
-                <h2 class="text-2xl font-bold text-gray-800 lg:text-3xl dark:text-white">{saveResident?.resident_name}</h2>
-
-                <p class="hidden max-w-screen-sm text-gray-500 dark:text-gray-300 md:block">
-                {saveResident?.address}
-                </p>
+            <div class="bg-white dark:bg-gray-800  h-full  lg:py-12">
+                <div class="md:mx-36 sm:mx-4 max-w-screen-2xl px-4 md:px-8">
+                    <div class="mb-4 flex items-center justify-between gap-8 sm:mb-8 md:mb-12">
+                        <div class="flex items-center gap-2">
+                            <h2 class="text-2xl font-bold text-gray-800 lg:text-3xl dark:text-white">{saveResident?.resident_name}</h2>
+                            <p class="hidden max-w-screen-sm text-gray-500 dark:text-gray-300 md:block">
+                                {saveResident?.address}
+                            </p>
+                        </div>
+                    </div>
+                    <div class="grid grid-cols-2 gap-4 sm:grid-cols-3  md:gap-6 xl:gap-8">
+                        <a href="#"
+                            class="group relative flex h-48
+             items-end overflow-hidden rounded-lg bg-gray-100
+              shadow-lg md:h-80">
+                            <img src={saveResident?.img1} loading="lazy" alt="Photo by Minh Pham" class="absolute inset-0 h-full w-full object-cover object-center transition duration-200 group-hover:scale-110" />
+                            <div
+                                class="pointer-events-none absolute inset-0 bg-gradient-to-t from-gray-800 via-transparent to-transparent opacity-50">
+                            </div>
+                            <span class="relative ml-4 mb-3 inline-block text-sm text-white md:ml-5 md:text-lg">1</span>
+                        </a>
+                        <a href="#"
+                            class="group relative flex h-48 items-end overflow-hidden rounded-lg bg-gray-100 shadow-lg md:col-span-2 md:h-80">
+                            <img src={saveResident?.img2} loading="lazy" alt="Photo by Magicle" class="absolute inset-0 h-full w-full object-cover object-center transition duration-200 group-hover:scale-110" />
+                            <div
+                                class="pointer-events-none absolute inset-0 bg-gradient-to-t from-gray-800 via-transparent to-transparent opacity-50">
+                            </div>
+                            <span class="relative ml-4 mb-3 inline-block text-sm text-white md:ml-5 md:text-lg">2</span>
+                        </a>
+                        <a href="#"
+                            class="group relative flex h-48 items-end overflow-hidden rounded-lg bg-gray-100 shadow-lg md:col-span-2 md:h-80">
+                            <img src={saveResident?.img3} loading="lazy" alt="Photo by Martin Sanchez" class="absolute inset-0 h-full w-full object-cover object-center transition duration-200 group-hover:scale-110" />
+                            <div
+                                class="pointer-events-none absolute inset-0 bg-gradient-to-t from-gray-800 via-transparent to-transparent opacity-50">
+                            </div>
+                            <span class="relative ml-4 mb-3 inline-block text-sm text-white md:ml-5 md:text-lg">3</span>
+                        </a>
+                        <a href="#"
+                            class="group relative flex h-48 items-end overflow-hidden rounded-lg bg-gray-100 shadow-lg md:h-80">
+                            <img src={saveResident?.img4} loading="lazy" alt="Photo by Lorenzo Herrera" class="absolute inset-0 h-full w-full object-cover object-center transition duration-200 group-hover:scale-110" />
+                            <div
+                                class="pointer-events-none absolute inset-0 bg-gradient-to-t from-gray-800 via-transparent to-transparent opacity-50">
+                            </div>
+                            <span class="relative ml-4 mb-3 inline-block text-sm text-white md:ml-5 md:text-lg">4</span>
+                        </a>
+                    </div>
+                </div>
             </div>
 
-           
-        </div>
-
-        <div class="grid grid-cols-2 gap-4 sm:grid-cols-3 md:gap-6 xl:gap-8">
-            <a href="#"
-                class="group relative flex h-48 items-end overflow-hidden rounded-lg bg-gray-100 shadow-lg md:h-80">
-                <img src={saveResident?.img1} loading="lazy" alt="Photo by Minh Pham" class="absolute inset-0 h-full w-full object-cover object-center transition duration-200 group-hover:scale-110" />
-
-                <div
-                    class="pointer-events-none absolute inset-0 bg-gradient-to-t from-gray-800 via-transparent to-transparent opacity-50">
-                </div>
-
-                <span class="relative ml-4 mb-3 inline-block text-sm text-white md:ml-5 md:text-lg">1</span>
-            </a>
-
-            <a href="#"
-                class="group relative flex h-48 items-end overflow-hidden rounded-lg bg-gray-100 shadow-lg md:col-span-2 md:h-80">
-                <img src={saveResident?.img2} loading="lazy" alt="Photo by Magicle" class="absolute inset-0 h-full w-full object-cover object-center transition duration-200 group-hover:scale-110" />
-
-                <div
-                    class="pointer-events-none absolute inset-0 bg-gradient-to-t from-gray-800 via-transparent to-transparent opacity-50">
-                </div>
-
-                <span class="relative ml-4 mb-3 inline-block text-sm text-white md:ml-5 md:text-lg">2</span>
-            </a>
-
-            <a href="#"
-                class="group relative flex h-48 items-end overflow-hidden rounded-lg bg-gray-100 shadow-lg md:col-span-2 md:h-80">
-                <img src={saveResident?.img3} loading="lazy" alt="Photo by Martin Sanchez" class="absolute inset-0 h-full w-full object-cover object-center transition duration-200 group-hover:scale-110" />
-
-                <div
-                    class="pointer-events-none absolute inset-0 bg-gradient-to-t from-gray-800 via-transparent to-transparent opacity-50">
-                </div>
-
-                <span class="relative ml-4 mb-3 inline-block text-sm text-white md:ml-5 md:text-lg">3</span>
-            </a>
-
-            <a href="#"
-                class="group relative flex h-48 items-end overflow-hidden rounded-lg bg-gray-100 shadow-lg md:h-80">
-                <img src={saveResident?.img4} loading="lazy" alt="Photo by Lorenzo Herrera" class="absolute inset-0 h-full w-full object-cover object-center transition duration-200 group-hover:scale-110" />
-
-                <div
-                    class="pointer-events-none absolute inset-0 bg-gradient-to-t from-gray-800 via-transparent to-transparent opacity-50">
-                </div>
-
-                <span class="relative ml-4 mb-3 inline-block text-sm text-white md:ml-5 md:text-lg">4</span>
-            </a>
-        </div>
-    </div>
-</div>
-          
 
 
-            <div class="px-2 pb-32 pt-48 w-full flex justify-center">
+            <div class="px-4 md:pb-32 sm:pb-4 pt-12 md:pt-48 w-full flex justify-center">
                 <div class="bg-white lg:mx-8 lg:flex lg:max-w-5xl lg:shadow-lg rounded-lg">
                     <div class="lg:w-1/2">
                         <div className="mapouter lg:scale-110 h-80 bg-cover lg:h-full rounded-none border lg:rounded-lg" >
@@ -170,10 +141,10 @@ const numberrr = "8801833948110"
                     </div>
                     <div class="py-12 px-6 lg:px-20 max-w-xl lg:max-w-5xl lg:w-1/2 rounded-t-none border lg:rounded-lg">
                         <h2 class="text-3xl text-gray-800 font-bold">
-                        {saveResident?.resident_name}
+                            {saveResident?.resident_name}
                         </h2>
                         <p class="mt-4 text-gray-600">
-                            {saveResident?.description}
+                            {saveResident?.description?.slice(0, 180)}
                         </p>
                         <div class=" py-4">
                             <h3 class="text-lg font-medium text-gray-900">Contact </h3>
@@ -192,9 +163,6 @@ const numberrr = "8801833948110"
                     </div>
                 </div>
             </div>
-
-
-
             <div className='mb-32'>
                 <h1 className='mt-12 text-center font-bold text-3xl'>Your Feedback</h1>
 
@@ -220,13 +188,21 @@ const numberrr = "8801833948110"
                     </div>
                 </div>
             </div>
-            <div className='mx-48 mt-8'>
-                {saveResident?._id && <Reviews hotel_id={saveResident?._id} />}
-            </div>
-            {/* <FloatingWhatsApp  accountName={nameeee} phoneNumber={numberrr} darkMode={true} chatMessage="Hello, Sir. How can I help you?"/> */}
+
+            <section class="bg-white px-4 py-10 md:py-20">
+                <div class="max-w-screen-xl mx-auto">
+                    <h2 class="font-black text-black text-center text-3xl leading-none uppercase max-w-2xl mx-auto mb-12">What Custoners Are Saying</h2>
+                    {
+                        saveResident?._id && <Reviews hotel_id={saveResident?._id} />
+                    }
+                </div>
+            </section>
+
+
+
             <TawkMessengerReact
                 propertyId="65c783060ff6374032cb9411"
-                widgetId="1hm9lfl1u"/>
+                widgetId="1hm9lfl1u" />
         </div>
 
     );

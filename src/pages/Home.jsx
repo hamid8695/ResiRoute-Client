@@ -13,7 +13,10 @@ const Home = () => {
   const [Loading, setLoading] = useState(true);
   const getAllResident = async () => {
     try {
-      const result = await fetcher.get("/api/resident/all");
+      const data = {
+        is_active: true
+    }
+      const result = await fetcher.post("/api/resident/all",data);
       setAllResident(result?.data?.data)
       setItemList(result?.data?.data)
       setLoading(false)
@@ -159,7 +162,7 @@ const Home = () => {
 
 
               {
-                itemList.map((hotel, index) => (
+                itemList?.slice(0,9)?.map((hotel, index) => (
                   <div class="rounded overflow-hidden shadow-lg" onClick={() => navigate(`/hotel-details/${hotel?._id}`)} id={hotel?._id} >
 
                     <a href="#"></a>

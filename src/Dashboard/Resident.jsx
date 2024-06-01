@@ -7,8 +7,11 @@ import { CiEdit } from "react-icons/ci";
 const Resident = () => {
     const [allResident, setAllResident] = useState([])
     const getAllResident = async () => {
+        const data = {
+            // is_active: true
+        }
         try {
-            const result = await fetcher.get("/api/resident/all");
+            const result = await fetcher.post("/api/resident/all", data);
             setAllResident(result?.data?.data)
         } catch (error) {
             console.log(error);
@@ -67,7 +70,7 @@ const Resident = () => {
                     </tr>
                 </thead>
                 <tbody class="bg-white divide-y divide-gray-200">{
-                    allResident?.slice(0, 10).map((hotel, index) => (
+                    allResident?.map((hotel, index) => (
                         <tr id={index}>
                             <td class="px-6 py-4 whitespace-nowrap">{index + 1}</td>
                             <td class="px-6 py-4 whitespace-nowrap"> <div class="flex-shrink-0 h-10 w-10">

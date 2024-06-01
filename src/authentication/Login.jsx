@@ -29,7 +29,7 @@ const Login = () => {
     };
 
     return (
-        <div className='bg-gray-300 flex justify-center pt-28'>
+        <div className='bg-gray-300 flex justify-center pt-40'>
             <div class="min-h-screen">
                 <div class="relative py-3 sm:max-w-xl sm:mx-auto">
                     <div
